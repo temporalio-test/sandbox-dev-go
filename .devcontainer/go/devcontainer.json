@@ -1,0 +1,25 @@
+{
+  "build": { "dockerfile": "Dockerfile" },
+  "overrideCommand": false,
+  "postStartCommand": "cd /temporal/samples/go && nohup bash -c 'go run helloworld/worker/main.go >/tmp/logs/temporal-worker.log &'",
+  "forwardPorts": [
+    7233,
+    7243,
+    8080,
+    9090
+  ],
+  "portsAttributes": {
+    "7233": {
+      "label": "temporal-grpc"
+    },
+    "7243": {
+      "label": "temporal-http"
+    },
+    "8080": {
+      "label": "temporal-web-ui"
+    },
+    "9090": {
+      "label": "temporal-metrics"
+    }
+  }
+}
